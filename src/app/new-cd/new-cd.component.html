@@ -1,0 +1,157 @@
+<div class="monForm">
+    <section class="subForm saisieForm">
+      <h2>Nouveau CD</h2>
+      <form [formGroup]="formulaire">
+        <div class="form-group">
+          <label for="title">title :</label>
+          <input
+            id="title"
+            type="text"
+            class="form-control"
+            formControlName="title"
+          />
+          <small
+            *ngIf="formulaire.get('title')?.invalid &&
+                  (formulaire.get('title')?.dirty ||
+                  formulaire.get('title')?.touched)"
+            class="text-danger"
+          >
+            <small *ngIf="formulaire.get('title')?.hasError('required')">
+              Ce champ est requis.
+            </small>
+            <small *ngIf="formulaire.get('title')?.hasError('minlength')">
+              Ce champ doit comporter au moins 6 caractères.
+            </small>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="author">author / Groupe :</label>
+          <input
+            id="author"
+            type="text"
+            class="form-control"
+            formControlName="author"
+          />
+          <small
+            *ngIf="formulaire.get('author')?.invalid &&
+                  (formulaire.get('author')?.dirty ||
+                  formulaire.get('author')?.touched)"
+            class="text-danger"
+          >
+            <small *ngIf="formulaire.get('author')?.hasError('required')">
+              Ce champ est requis.
+            </small>
+            <small *ngIf="formulaire.get('author')?.hasError('minlength')">
+              Ce champ doit comporter au moins 6 caractères.
+            </small>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="thumbnail">thumbnail (URL) :</label>
+          <input
+            id="thumbnail"
+            type="text"
+            class="form-control"
+            formControlName="thumbnail"
+          />
+          <small
+            *ngIf="formulaire.get('thumbnail')?.invalid &&
+                  (formulaire.get('thumbnail')?.dirty ||
+                  formulaire.get('thumbnail')?.touched)"
+            class="text-danger"
+          >
+            <small *ngIf="formulaire.get('thumbnail')?.hasError('pattern')">
+              Veuillez entrer une URL valide.
+            </small>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="price">price :</label>
+          <input
+            id="price"
+            type="number"
+            class="form-control"
+            formControlName="price"
+          />
+          <small
+            *ngIf="formulaire.get('price')?.invalid &&
+                  (formulaire.get('price')?.dirty ||
+                  formulaire.get('price')?.touched)"
+            class="text-danger"
+          >
+            <small *ngIf="formulaire.get('price')?.hasError('required')">
+              Ce champ est requis.
+            </small>
+            <small *ngIf="formulaire.get('price')?.hasError('min')">
+              Le price doit être supérieur à 0.
+            </small>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="quantite">Quantité en stock :</label>
+          <input
+            id="quantite"
+            type="number"
+            class="form-control"
+            formControlName="quantite"
+          />
+          <small
+            *ngIf="formulaire.get('quantite')?.invalid &&
+                  (formulaire.get('quantite')?.dirty ||
+                  formulaire.get('quantite')?.touched)"
+            class="text-danger"
+          >
+            <small *ngIf="formulaire.get('quantite')?.hasError('required')">
+              Ce champ est requis.
+            </small>
+            <small *ngIf="formulaire.get('quantite')?.hasError('min')">
+              La quantité doit être supérieure ou égale à 0.
+            </small>
+          </small>
+        </div>
+
+        <div class="formulaire-group">
+          <label for="dateDeSortie">Date de sortie :</label>
+          <input
+            id="dateDeSortie"
+            type="date"
+            class="form-control"
+            formControlName="dateDeSortie"
+          />
+          <small
+            *ngIf="formulaire.get('dateDeSortie')?.invalid &&
+                  (formulaire.get('dateDeSortie')?.dirty ||
+                  formulaire.get('dateDeSortie')?.touched)"
+            class="text-danger"
+          >
+            <small *ngIf="formulaire.get('dateDeSortie')?.hasError('required')">
+              Ce champ est requis.
+            </small>
+          </small>
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="formulaire.invalid"
+        >
+          Ajouter le CD
+        </button>
+      </form>
+    </section>
+
+    <section class="subForm visuForm">
+      <h2>Vue du CD</h2>
+      <div *ngIf="currentCD">
+        <h2>title : {{ currentCD.title }}</h2>
+        <p>Sortie le : {{(currentCD.dateDeSortie | date: 'dd/MM/yyyy')}}</p>
+        <p>author / groupe : {{(currentCD.author)}}</p>
+        <p>price : {{(currentCD.price | currency)}}</p>
+        <p>Quantité : {{(currentCD.quantite)}}</p>
+        <img [src]="currentCD.thumbnail" alt="{{(currentCD.title)}}">
+      </div>
+    </section>
+  </div>
