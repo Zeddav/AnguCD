@@ -1,7 +1,9 @@
 .cd-card{
     box-sizing: border-box;
     padding: 20px 30px;
-    box-shadow: lightgrey 4px 4px 20px;
+    box-shadow: rgb(0, 0, 0) 4px 4px 20px;
+    border-color: chartreuse;
+    border-width: 3px;
     img{
         width: 100%;
     }

@@ -1,4 +1,10 @@
 <div class="list-cd">
-    <ng-container *ngFor="let unCd of listcd">
-        <app-cd *ngIf="unCd.quantite > 0" [Cd]="unCd"></app-cd>
-    </ng-container>
+    <mat-grid-list [cols]="columns" rowHeight="1:1" gutterSize="16px">
+      <ng-container *ngFor="let unCd of listcd">
+        <mat-grid-tile *ngIf="unCd.quantite > 0">
+          <app-cd [Cd]="unCd"></app-cd>
+        </mat-grid-tile>
+      </ng-container>
+    </mat-grid-list>
+  </div>
+  

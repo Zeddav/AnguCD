@@ -1,5 +1,14 @@
-.list-cd{
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-column-gap: 15px;
-}
+.list-cd {
+    margin: 20px;
+  }
+  
+  mat-grid-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  app-cd {
+    width: 100%;
+  }

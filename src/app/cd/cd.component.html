@@ -1,15 +1,28 @@
-<div class="cd-card" [ngClass]="{'cdadded': theCd.onsale===true}">
-    <h3>{{theCd.title | uppercase}}</h3>
-    <p>Sortie le : {{theCd.dateDeSortie | date: 'dd/MM/yyyy'}}</p>
-    <p>Auteur / groupe : {{theCd.author}}</p>
-    <p>Prix : {{theCd.price |currency: 'EUR'}}</p>
-    <p>En Stock : 
-        <span [ngStyle]="{color: 'rgb(0, '+ theCd.quantite+', 0)'}">{{theCd.quantite}}</span>
-        <button (click)="onAddCD()">Ajouter une unité</button>
-    </p>
-    <p *ngIf="idCd === undefined">
-    <a routerLink="/cd/{{theCd.id}}" class="button"><button>Voir le détail</button></a>
-    </p>
-    <img [src]="theCd.thumbnail" [alt]="theCd.title"/>
-
-</div>
+<mat-card class="cd-card" [ngClass]="{'cdadded': theCd.onsale === true}" style="background-color: white; color: black;">
+    <mat-card-header>
+      <mat-card-title>{{ theCd.title | uppercase }}</mat-card-title>
+      <mat-card-subtitle>Sortie le : {{ theCd.dateDeSortie | date: 'dd/MM/yyyy' }}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <p>Auteur / groupe : {{ theCd.author }}</p>
+      <p>Prix : {{ theCd.price | currency: 'EUR' }}</p>
+      <p>En Stock : 
+        <span [ngStyle]="{color: 'rgb(0, '+ theCd.quantite+', 0)'}">{{ theCd.quantite }}</span>
+      </p>
+    </mat-card-content>
+    
+    <mat-card-actions>
+      <button mat-button (click)="onAddCD()">Ajouter une unité</button>
+      <ng-container *ngIf="idCd === undefined">
+        <a routerLink="/cd/{{theCd.id}}" class="button">
+          <button mat-button>Voir le détail</button>
+        </a>
+      </ng-container>
+    </mat-card-actions>
+  
+    <mat-card-footer>
+      <img mat-card-image [src]="theCd.thumbnail" [alt]="theCd.title"/>
+    </mat-card-footer>
+  </mat-card>
+  
